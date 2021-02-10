@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: coffee-maker-server
+
+server:
+  port: 8080
+  servlet:
+    context-path: /

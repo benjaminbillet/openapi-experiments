@@ -1,0 +1,9 @@
+# Requests
+
+# Responses
+coffee-maker-status:
+  type: object
+  properties:
+    state:
+      type: string
+      enum: [ HEATING, WAITING_FOR_ORDER, POURING, OUT_OF_WATER, OUT_OF_COFFEE, NEED_MAINTENANCE, UNKNOWN ]

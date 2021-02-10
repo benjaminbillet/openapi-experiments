@@ -1,0 +1,21 @@
+openapi: 3.0.0
+info:
+  title: Coffee Maker API
+  description: A very simple coffee maker API, for demonstrating code generation using OpenAPI
+  version: "1.0.0"
+tags:
+  - name: Coffee Maker API
+    description: Coffee Maker API
+paths: # be very careful with refs, each path must point different things
+  /api/status:
+    $ref: './paths/status.yaml#/coffee-maker-status'
+  /api/orders:
+    $ref: './paths/orders.yaml#/orders'
+  /api/orders/{orderId}:
+    $ref: './paths/orders.yaml#/order-by-id'
+components:
+  securitySchemes:
+    customAuthentication:
+      type: http
+      scheme: bearer
+      bearerFormat: jwt

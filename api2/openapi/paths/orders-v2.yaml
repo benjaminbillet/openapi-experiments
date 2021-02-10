@@ -1,0 +1,23 @@
+orders:
+  post:
+    tags:
+      - Coffee Maker API v2
+    summary: Order a coffee
+    operationId: orderCoffee
+    description: Enqueue a new coffee order to be processed by the coffee maker.
+    #security:
+    #  - customAuthentication: [ ]
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../components/orders-v2.yaml#/coffee-specs-v2'
+    responses:
+      '200':
+        description: The coffee order was taken into account.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/orders-v2.yaml#/order-response'
+      '401':
+        description: Authorization information is missing or invalid.

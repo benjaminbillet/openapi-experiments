@@ -1,0 +1,17 @@
+coffee-maker-status:
+  get:
+    tags:
+      - Coffee Maker API
+    summary: Retrieve the coffee maker state
+    operationId: getCoffeeMakerStatus
+    #security:
+    #  - customAuthentication: [ ]
+    responses:
+      '200':
+        description: The user has successfully been added in the list of entitlements
+        content:
+          application/json:
+            schema:
+              $ref: '../components/status.yaml#/coffee-maker-status'
+      '401':
+        description: Authorization information is missing or invalid.

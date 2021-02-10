@@ -1,0 +1,4 @@
+coffee-type:
+  type: string
+  enum: [ RISTRETTO, ESPRESSO, DOPPIO, LUNGO, DEVELOPER, SYSADMIN ]
+  description: Type of coffee.

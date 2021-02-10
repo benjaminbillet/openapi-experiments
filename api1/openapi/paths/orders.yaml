@@ -1,0 +1,78 @@
+orders:
+  post:
+    tags:
+      - Coffee Maker API
+    summary: Order a coffee
+    operationId: orderCoffee
+    description: Enqueue a new coffee order to be processed by the coffee maker.
+    #security:
+    #  - customAuthentication: [ ]
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../components/orders.yaml#/coffee-specs'
+    responses:
+      '200':
+        description: The order was taken into account.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/orders.yaml#/order-response'
+      '401':
+        description: Authorization information is missing or invalid.
+
+order-by-id:
+  get:
+    tags:
+      - Coffee Maker API
+    summary: Retrieve a coffee order
+    operationId: getCoffeeOrder
+    #security:
+    #  - customAuthentication: [ ]
+    parameters:
+      - name: orderId
+        in: path
+        description: Coffee order ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+    responses:
+      '200':
+        description: The coffee order status.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/orders.yaml#/order-response'
+      '401':
+        description: Authorization information is missing or invalid.
+      '404':
+        description: Order not found.
+  delete:
+    tags:
+      - Coffee Maker API
+    summary: Cancel a coffee order
+    operationId: cancelCoffeeOrder
+    #security:
+    #  - customAuthentication: [ ]
+    parameters:
+      - name: orderId
+        in: path
+        description: Coffee order ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+    responses:
+      '201':
+        description: The coffee order was successfully cancelled.
+      '400':
+        content:
+          application/json:
+            schema:
+              $ref: '../components/errors.yaml#/error'
+      '401':
+        description: Authorization information is missing or invalid.
+      '404':
+        description: Order not found.

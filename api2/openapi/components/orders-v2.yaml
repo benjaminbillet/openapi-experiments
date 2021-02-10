@@ -1,0 +1,31 @@
+#Requests
+coffee-specs-v2:
+  allOf:
+    - $ref: './orders-v1.yaml#/coffee-specs-v1'
+    - type: object
+      properties:
+        sugar-level:
+          type: integer
+          format: int32
+          default: 0
+          minimum: 0
+          maximum: 5
+          description: Amount of sugar to be delivered.
+        stirrer:
+          type: boolean
+          default: false
+          description: If true, the coffee maker will deliver a stirrer.
+
+#Responses
+order-response:
+  type: object
+  properties:
+    orderId:
+      type: string
+      format: uuid
+    status:
+      type: string
+      enum: [ QUEUED, PREPARING, READY ]
+      description: Status of the coffee order.
+    spec:
+      $ref: '#/coffee-specs-v2'

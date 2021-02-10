@@ -1,0 +1,34 @@
+coffee-type:
+  type: string
+  enum: [ RISTRETTO, ESPRESSO, DOPPIO, LUNGO, DEVELOPER, SYSADMIN ]
+  description: Type of coffee.
+
+#Requests
+coffee-specs:
+  type: object
+  required:
+    - coffeeType
+  properties:
+    coffeeType:
+      $ref: '#/coffee-type'
+    strength:
+      type: integer
+      format: int32
+      default: 2
+      minimum: 1
+      maximum: 3
+      description: Amount of coffee powder.
+
+#Responses
+order-response:
+  type: object
+  properties:
+    orderId:
+      type: string
+      format: uuid
+    status:
+      type: string
+      enum: [ QUEUED, PREPARING, READY ]
+      description: Status of the coffee order.
+    spec:
+      $ref: '#/coffee-specs'
